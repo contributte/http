@@ -48,7 +48,12 @@ Few methods added:
 use Contributte\Http\Url;
 
 $url = new Url('https://github.com');
-$url->appendPath('/foobar');
+
+$url->appendPath('foo');
+# https://github.com/foo
+
+$url->appendPath('bar');
+# https://github.com/foobar
 ```
 
 ---

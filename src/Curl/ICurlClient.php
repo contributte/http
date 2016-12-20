@@ -1,6 +1,10 @@
 <?php
+
 namespace Contributte\Http\Curl;
 
+/**
+ * @author Milan Felix Sulc <sulcmil@gmail.com>
+ */
 interface ICurlClient
 {
 

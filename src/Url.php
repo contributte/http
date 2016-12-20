@@ -4,6 +4,9 @@ namespace Contributte\Http;
 
 use Nette\Http\Url as NetteUrl;
 
+/**
+ * @author Milan Felix Sulc <sulcmil@gmail.com>
+ */
 class Url extends NetteUrl
 {
 

@@ -2,6 +2,9 @@
 
 namespace Contributte\Http\Curl;
 
+/**
+ * @author Milan Felix Sulc <sulcmil@gmail.com>
+ */
 class CurlClient implements ICurlClient
 {
 

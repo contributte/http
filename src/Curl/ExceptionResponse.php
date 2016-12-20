@@ -4,6 +4,9 @@ namespace Contributte\Http\Curl;
 
 use Exception;
 
+/**
+ * @author Milan Felix Sulc <sulcmil@gmail.com>
+ */
 class ExceptionResponse extends Response
 {
 

@@ -5,6 +5,9 @@ namespace Contributte\Http\DI;
 use Contributte\Http\Curl\CurlClient;
 use Nette\DI\CompilerExtension;
 
+/**
+ * @author Milan Felix Sulc <sulcmil@gmail.com>
+ */
 class CurlExtension extends CompilerExtension
 {
 

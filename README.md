@@ -38,6 +38,19 @@ extensions:
 
 Extension registers by automatic [`Contributte\Http\Curl\CurlClient`](https://github.com/contributte/http/blob/master/src/Curl/CurlClient.php) as a service.
 
+### URL
+
+Few methods added:
+
+#### `$url->appendPath($path)`
+
+```php
+use Contributte\Http\Url;
+
+$url = new Url('https://github.com');
+$url->appendPath('/foobar');
+```
+
 ---
 
 Thank you for testing, reporting and contributing.

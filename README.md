@@ -23,38 +23,10 @@
 composer require contributte/http
 ```
 
-## Usage
+## Overview
 
-### Curl
-
-There is a prepared simple cURL client in this package.
-
-You have to register it at first.
-
-```yaml
-extensions:
-    curl: Contributte\Http\CurlExtension
-```
-
-Extension registers by automatic [`Contributte\Http\Curl\CurlClient`](https://github.com/contributte/http/blob/master/src/Curl/CurlClient.php) as a service.
-
-### URL
-
-Few methods added:
-
-#### `$url->appendPath($path)`
-
-```php
-use Contributte\Http\Url;
-
-$url = new Url('https://github.com');
-
-$url->appendPath('foo');
-# https://github.com/foo
-
-$url->appendPath('bar');
-# https://github.com/foobar
-```
+- [Simple cURL client (CurlExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#curl)
+- [URL in SAPI mode (CliRequestExtension)]((https://github.com/contributte/http/blob/master/.docs/README.md#cli-request)
 
 ---
 

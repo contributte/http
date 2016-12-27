@@ -3,7 +3,8 @@
 ## Content
 
 - [Curl - provides CurlExtension and simple cURL client](#curl)
-- [CliRequest - provides CliRequestExtension, URL in console (SAPI) mode](#cli-request)
+- [CliRequest - provides CliRequestExtension, URL in console (SAPI) mode](#clirequest)
+- [URL - extra methods](#url)
 
 ## Curl
 
@@ -17,24 +18,6 @@ extensions:
 ```
 
 Extension registers by automatic [`Contributte\Http\Curl\CurlClient`](https://github.com/contributte/http/blob/master/src/Curl/CurlClient.php) as a service.
-
-### URL
-
-Few methods added:
-
-#### `$url->appendPath($path)`
-
-```php
-use Contributte\Http\Url;
-
-$url = new Url('https://github.com');
-
-$url->appendPath('foo');
-# https://github.com/foo
-
-$url->appendPath('bar');
-# https://github.com/foobar
-```
 
 ## CliRequest
 
@@ -61,4 +44,22 @@ cli:
     remoteAddress: NULL
     remoteHost: NULL
     rawBodyCallback: NULL
+```
+
+## URL
+
+Few methods added:
+
+### `$url->appendPath($path)`
+
+```php
+use Contributte\Http\Url;
+
+$url = new Url('https://github.com');
+
+$url->appendPath('foo');
+# https://github.com/foo
+
+$url->appendPath('bar');
+# https://github.com/foobar
 ```

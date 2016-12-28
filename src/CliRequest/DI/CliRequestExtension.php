@@ -1,6 +1,6 @@
 <?php
 
-namespace Contributte\Http\DI;
+namespace Contributte\Http\CliRequest\DI;
 
 use Nette\DI\CompilerExtension;
 use Nette\DI\Statement;
@@ -51,7 +51,7 @@ class CliRequestExtension extends CompilerExtension
 		$builder = $this->getContainerBuilder();
 
 		// Verify that we have http.request
-		if ($builder->hasDefinition('http.request')) {
+		if (!$builder->hasDefinition('http.request')) {
 			throw new RuntimeException('Service http.request is needed');
 		}
 

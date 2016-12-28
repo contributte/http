@@ -28,10 +28,6 @@
       "Contributte\\Http\\": "src"
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-    }
-  },
   "scripts": {
     "qa": [
       "@qa-linter",

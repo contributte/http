@@ -24,10 +24,16 @@
 composer require contributte/http
 ```
 
+## Versions
+
+| State       | Version | Branch   | PHP      |
+|-------------|---------|----------|----------|
+| development | `^0.1`  | `master` | `>= 5.6` |
+
 ## Overview
 
-- [Simple cURL client (CurlExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#curl)
-- [URL in console / SAPI mode (CliRequestExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#clirequest)
+- [Curl - simple http client (CurlExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#curl)
+- [SAPI - fake request (CliRequestExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#sapi)
 - Collection of Utils:
     - [Url](https://github.com/contributte/http/blob/master/.docs/README.md#url)
 

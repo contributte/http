@@ -16,7 +16,7 @@
 
 ## Discussion / Help
 
-[![Join the chat](https://img.shields.io/gitter/room/contributte/contributte.svg?style=flat-square)](https://gitter.im/contributte/contributte?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat](https://img.shields.io/gitter/room/contributte/contributte.svg?style=flat-square)](http://bit.ly/ctteg)
 
 ## Install
 
@@ -28,6 +28,10 @@ composer require contributte/http
 
 - [Simple cURL client (CurlExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#curl)
 - [URL in SAPI mode (CliRequestExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#clirequest)
+
+-----
+
+The development is sponsored by [Tlapnet](http://www.tlapnet.cz). Thank you guys! :+1:
 
 ---
 

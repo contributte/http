@@ -27,7 +27,9 @@ composer require contributte/http
 ## Overview
 
 - [Simple cURL client (CurlExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#curl)
-- [URL in SAPI mode (CliRequestExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#clirequest)
+- [URL in console / SAPI mode (CliRequestExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#clirequest)
+- Collection of Utils:
+    - [Url](https://github.com/contributte/http/blob/master/.docs/README.md#url)
 
 -----
 

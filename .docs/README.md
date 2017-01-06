@@ -3,7 +3,7 @@
 ## Content
 
 - [Curl - provides CurlExtension and simple cURL client](#curl)
-- [CliRequest - provides CliRequestExtension, URL in console (SAPI) mode](#clirequest)
+- [SAPI - provides SapiRequestExtension (fake request in console mode)](#sapi)
 - [URL - extra methods](#url)
 
 ## Curl
@@ -19,21 +19,31 @@ extensions:
 
 Extension registers by automatic [`Contributte\Http\Curl\CurlClient`](https://github.com/contributte/http/blob/master/src/Curl/CurlClient.php) as a service.
 
-## CliRequest
+## SAPI
+
+Every modern PHP application needs sometimes run a few console commands. Let's say sending newsletter campaigns. There is
+a tiny problem, there is no request/URL in console/SAPI (Server API) mode. Don't worry, just use our fake request -
+`SapiRequestExtension`.
+
+Easies ways is to register extension without any parameters.
 
 ```yaml
 extensions:
-    cli: Contributte\Http\CliRequestExtension
+    sapi: Contributte\Http\SAPI\DI\SapiRequestExtension
 ```
+
+Otherwise, you can pass directly URL address.
 
 ```yaml
 extensions:
-    cli: Contributte\Http\CliRequestExtension(https://contributte.org)
+    sapi: Contributte\Http\SAPI\DI\SapiRequestExtension(https://contributte.org)
 ```
 
+List of all options:
+
 ```yaml
-cli:
-    url: contributte.org
+sapi:
+    url: https://contributte.org
     # other params
     query: NULL
     post: NULL

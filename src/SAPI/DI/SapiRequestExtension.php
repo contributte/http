@@ -1,6 +1,6 @@
 <?php
 
-namespace Contributte\Http\CliRequest\DI;
+namespace Contributte\Http\SAPI\DI;
 
 use Nette\DI\CompilerExtension;
 use Nette\DI\Statement;
@@ -11,7 +11,7 @@ use RuntimeException;
 /**
  * @author Milan Felix Sulc <sulcmil@gmail.com>
  */
-class CliRequestExtension extends CompilerExtension
+class SapiRequestExtension extends CompilerExtension
 {
 
 	/** @var array */

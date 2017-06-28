@@ -1,6 +1,6 @@
 <?php
 
-namespace Contributte\Http\SAPI\DI;
+namespace Contributte\Http\DI;
 
 use Nette\DI\CompilerExtension;
 use Nette\DI\Statement;

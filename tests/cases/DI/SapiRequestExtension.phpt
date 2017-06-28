@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Test: SAPI\DI\SapiRequestExtension
+ * Test: DI\SapiRequestExtension
  */
 
-use Contributte\Http\SAPI\DI\SapiRequestExtension;
+use Contributte\Http\DI\SapiRequestExtension;
 use Nette\Bridges\HttpDI\HttpExtension;
 use Nette\DI\Compiler;
 use Nette\DI\Container;
@@ -12,7 +12,7 @@ use Nette\DI\ContainerLoader;
 use Nette\Http\Request;
 use Tester\Assert;
 
-require_once __DIR__ . '/../../../bootstrap.php';
+require_once __DIR__ . '/../../bootstrap.php';
 
 test(function () {
 	$loader = new ContainerLoader(TEMP_DIR, TRUE);

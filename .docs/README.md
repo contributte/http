@@ -4,6 +4,7 @@
 
 - [Curl - provides CurlExtension and simple cURL client](#curl)
 - [SAPI - provides SapiRequestExtension (fake request in console mode)](#sapi)
+- [BasicAuth - simple basic authentication](#basic-authentication)
 - [URL - extra methods](#url)
 
 ## Curl
@@ -14,7 +15,7 @@ You have to register it at first.
 
 ```yaml
 extensions:
-    curl: Contributte\Http\CurlExtension
+    curl: Contributte\Http\DI\CurlExtension
 ```
 
 Extension registers by automatic [`Contributte\Http\Curl\CurlClient`](https://github.com/contributte/http/blob/master/src/Curl/CurlClient.php) as a service.
@@ -29,14 +30,14 @@ Easies ways is to register extension without any parameters.
 
 ```yaml
 extensions:
-    sapi: Contributte\Http\SAPI\DI\SapiRequestExtension
+    sapi: Contributte\Http\DI\SapiRequestExtension
 ```
 
 Otherwise, you can pass directly URL address.
 
 ```yaml
 extensions:
-    sapi: Contributte\Http\SAPI\DI\SapiRequestExtension(https://contributte.org)
+    sapi: Contributte\Http\DI\SapiRequestExtension(https://contributte.org)
 ```
 
 List of all options:
@@ -54,6 +55,25 @@ sapi:
     remoteAddress: NULL
     remoteHost: NULL
     rawBodyCallback: NULL
+```
+
+## Basic Authentication
+
+```yaml
+extensions:
+    auth: Contributte\Http\DI\BasicAuthExtension
+```
+
+You have `enable` this extension by yourself. It's disabled by default. Users is array of username => password.
+
+```yaml
+auth:
+    enabled: true/false
+    title: My security zone
+    users:
+      username1: password1
+      username2: password2
+      username3: password3
 ```
 
 ## URL

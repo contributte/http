@@ -34,6 +34,7 @@ composer require contributte/http
 
 - [Curl - simple http client (CurlExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#curl)
 - [SAPI - fake request (CliRequestExtension)](https://github.com/contributte/http/blob/master/.docs/README.md#sapi)
+- [BasicAuth - simple basic authentication](https://github.com/contributte/http/blob/master/.docs/README.md#basic-authentication)
 - Collection of Utils:
     - [Url](https://github.com/contributte/http/blob/master/.docs/README.md#url)
 

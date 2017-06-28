@@ -1,6 +1,6 @@
 <?php
 
-namespace Contributte\Http\Curl\DI;
+namespace Contributte\Http\DI;
 
 use Contributte\Http\Curl\CurlClient;
 use Nette\DI\CompilerExtension;

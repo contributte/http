@@ -17,6 +17,9 @@ class Response
 	/** @var array */
 	private $info;
 
+	/** @var mixed */
+	private $error;
+
 	/**
 	 * @param mixed $body
 	 * @param array $headers
@@ -139,6 +142,23 @@ class Response
 	public function isOk()
 	{
 		return $this->getStatusCode() === 200;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getError()
+	{
+		return $this->error;
+	}
+
+	/**
+	 * @param mixed $error
+	 * @return void
+	 */
+	public function setError($error)
+	{
+		$this->error = $error;
 	}
 
 }

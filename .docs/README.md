@@ -5,7 +5,8 @@
 - [Curl - provides CurlExtension and simple cURL client](#curl)
 - [SAPI - provides SapiRequestExtension (fake request in console mode)](#sapi)
 - [BasicAuth - simple basic authentication](#basic-authentication)
-- [URL - extra methods](#url)
+- Useful classes
+    - [URL - extra methods](#url)
 
 ## Curl
 
@@ -76,11 +77,13 @@ auth:
       username3: password3
 ```
 
-## URL
+## Useful classes
+
+### Url
 
 Few methods added:
 
-### `$url->appendPath($path)`
+#### `$url->appendPath($path)`
 
 ```php
 use Contributte\Http\Url;

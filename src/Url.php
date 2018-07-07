@@ -1,20 +1,13 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Http;
 
 use Nette\Http\Url as NetteUrl;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- */
 class Url extends NetteUrl
 {
 
-	/**
-	 * @param string $path
-	 * @return self
-	 */
-	public function appendPath($path)
+	public function appendPath(string $path): self
 	{
 		$this->setPath($this->getPath() . $path);
 

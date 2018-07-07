@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 /**
  * Test: DI\CurlExtension
@@ -14,14 +14,14 @@ use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-test(function () {
-	$loader = new ContainerLoader(TEMP_DIR, TRUE);
-	$class = $loader->load(function (Compiler $compiler) {
+test(function (): void {
+	$loader = new ContainerLoader(TEMP_DIR, true);
+	$class = $loader->load(function (Compiler $compiler): void {
 		$compiler->addExtension('curl', new CurlExtension());
 	}, 1);
 
 	/** @var Container $container */
-	$container = new $class;
+	$container = new $class();
 
 	Assert::type(CurlClient::class, $container->getByType(ICurlClient::class));
 });

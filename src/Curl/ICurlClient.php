@@ -1,19 +1,14 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Http\Curl;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- */
 interface ICurlClient
 {
 
 	/**
-	 * @param string $url
-	 * @param array $headers
-	 * @param array $opts
-	 * @return Response
+	 * @param string[] $headers
+	 * @param mixed[] $opts
 	 */
-	public function makeRequest($url, array $headers = [], array $opts = []);
+	public function makeRequest(string $url, array $headers = [], array $opts = []): Response;
 
 }

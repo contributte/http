@@ -1,9 +1,18 @@
 {
   "name": "contributte/http",
   "description": "Extra contrib to nette/http",
-  "keywords": ["nette", "http", "request", "response", "curl", "auth"],
+  "keywords": [
+    "nette",
+    "http",
+    "request",
+    "response",
+    "curl",
+    "auth"
+  ],
   "type": "library",
-  "license": "MIT",
+  "license": [
+    "MIT"
+  ],
   "homepage": "https://github.com/contributte/http",
   "authors": [
     {
@@ -12,13 +21,17 @@
     }
   ],
   "require": {
-    "php": ">= 5.6",
-    "nette/http": "^2.4.5"
+    "php": ">= 7.1",
+    "nette/http": "~2.4.9"
   },
   "require-dev": {
-    "ninjify/qa": "^0.4.0",
-    "ninjify/nunjuck": "^0.1.4",
-    "nette/di": "^2.4.8"
+    "ninjify/qa": "^0.8.0",
+    "ninjify/nunjuck": "^0.2.0",
+    "nette/di": "~2.4.13",
+    "tracy/tracy": "~2.5.1"
+  },
+  "conflict": {
+    "nette/di": "<2.4.13"
   },
   "suggest": {
     "nette/di": "to use CompilerExtensions"
@@ -28,16 +41,32 @@
       "Contributte\\Http\\": "src"
     }
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "scripts": {
     "qa": [
       "linter src tests",
       "codesniffer src tests"
     ],
     "tester": [
-      "tester -s -p php --colors 1 -c tests/php-unix.ini tests/cases"
+      "tester -s -p php --colors 1 -C tests/cases"
     ],
-    "tester-coverage": [
-      "tester -s -p php --colors 1 -c tests/php-unix.ini -d extension=xdebug.so --coverage ./coverage.xml --coverage-src ./src tests/cases"
+    "coverage": [
+      "tester -s -p php --colors 1 -C -d extension=xdebug.so --coverage ./coverage.xml --coverage-src ./src tests/cases"
+    ],
+    "phpstan-install": [
+      "mkdir -p temp/phpstan",
+      "composer require -d temp/phpstan phpstan/phpstan:0.10.1",
+      "composer require -d temp/phpstan phpstan/phpstan-nette:0.10",
+      "composer require -d temp/phpstan phpstan/phpstan-strict-rules:0.10"
+    ],
+    "phpstan": [
+      "temp/phpstan/vendor/bin/phpstan analyse -l max -c phpstan.neon src"
     ]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.3.x-dev"
+    }
   }
 }

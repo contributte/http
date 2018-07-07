@@ -5,7 +5,8 @@
 - [Curl - provides CurlExtension and simple cURL client](#curl)
 - [SAPI - provides SapiRequestExtension (fake request in console mode)](#sapi)
 - [BasicAuth - simple basic authentication](#basic-authentication)
-- [URL - extra methods](#url)
+- Useful classes
+    - [URL - extra methods](#url)
 
 ## Curl
 
@@ -64,23 +65,30 @@ extensions:
     auth: Contributte\Http\DI\BasicAuthExtension
 ```
 
-You have `enable` this extension by yourself. It's disabled by default. Users is array of username => password.
+You have `enable` this extension by yourself. It's disabled by default.
 
 ```yaml
 auth:
     enabled: true/false
     title: My security zone
     users:
-      username1: password1
-      username2: password2
-      username3: password3
+      username1:
+        password: password1
+        unsecured: true
+      username2:
+        password: $2y$10$p.U5q.BuQp02srggig.VDOqj5m7pE1rCwKavVQ3S2TrqWlkqu3qlC
+        unsecured: false # secured by default
+      username3:
+        password: $2y$10$bgievYVQMzsRn5Ysup.NKOVUk66aitAniAmts2EJAa91eqkAhohvC
 ```
 
-## URL
+## Useful classes
+
+### Url
 
 Few methods added:
 
-### `$url->appendPath($path)`
+#### `$url->appendPath($path)`
 
 ```php
 use Contributte\Http\Url;

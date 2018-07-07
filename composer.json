@@ -31,7 +31,8 @@
     "tracy/tracy": "~2.5.1"
   },
   "conflict": {
-    "nette/di": "<2.4.13"
+    "nette/di": "<2.4.13",
+    "nette/utils": "<2.5.2"
   },
   "suggest": {
     "nette/di": "to use CompilerExtensions"

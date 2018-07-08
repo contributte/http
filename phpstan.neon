@@ -1,0 +1,12 @@
+includes:
+	- temp/phpstan/vendor/phpstan/phpstan-strict-rules/rules.neon
+	- temp/phpstan/vendor/phpstan/phpstan-nette/extension.neon
+	- temp/phpstan/vendor/phpstan/phpstan-nette/rules.neon
+
+parameters:
+	ignoreErrors:
+		- '#Parameter \#1 \$ch of function curl_setopt_array expects resource, resource\|false given.#'
+		- '#Parameter \#1 \$ch of function curl_exec expects resource, resource\|false given.#'
+		- '#Parameter \#1 \$ch of function curl_getinfo expects resource, resource\|false given.#'
+		- '#Parameter \#1 \$ch of function curl_close expects resource, resource\|false given.#'
+		- '#Parameter \#1 \$body of method Contributte\\Http\\Curl\\ResponseFactory::setBody\(\) expects string, bool\|string given.#'

@@ -1,14 +1,11 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Http\Curl;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- */
 class CurlClient implements ICurlClient
 {
 
-	/** @var array */
+	/** @var mixed[] */
 	private $options = [
 		CURLOPT_USERAGENT => 'Contributte',
 		CURLOPT_FOLLOWLOCATION => 1,
@@ -16,26 +13,24 @@ class CurlClient implements ICurlClient
 		CURLOPT_RETURNTRANSFER => 1,
 	];
 
-	/** @var array */
+	/** @var string[] */
 	private $headers = [
 		'Content-type' => 'application/json',
 		'Time-Zone' => 'Europe/Prague',
 	];
 
 	/**
-	 * @param string $url
-	 * @param array $headers
-	 * @param array $opts
-	 * @return Response
+	 * @param string[] $headers
+	 * @param mixed[] $opts
 	 */
-	public function makeRequest($url, array $headers = [], array $opts = [])
+	public function makeRequest(string $url, array $headers = [], array $opts = []): Response
 	{
 		$ch = curl_init();
 		$responseFactory = new ResponseFactory();
 
 		// Set-up headers
 		$_headers = array_merge($this->headers, $headers);
-		array_walk($_headers, function (&$value, $key) {
+		array_walk($_headers, function (&$value, $key): void {
 			$value = sprintf('%s: %s', $key, $value);
 		});
 		$_headers = array_values($_headers);

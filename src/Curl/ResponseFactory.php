@@ -1,60 +1,47 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Http\Curl;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- */
 class ResponseFactory
 {
 
 	/** @var mixed */
 	private $body;
 
-	/** @var array */
+	/** @var string[] */
 	private $headers = [];
 
-	/** @var array */
+	/** @var mixed[] */
 	private $info = [];
 
 	/**
-	 * @param array $info
-	 * @return void
+	 * @param mixed[] $info
 	 */
-	public function setInfo(array $info)
+	public function setInfo(array $info): void
 	{
 		$this->info = $info;
 	}
 
-	/**
-	 * @param string $body
-	 * @return void
-	 */
-	public function setBody($body)
+	public function setBody(string $body): void
 	{
 		$this->body = $body;
 	}
 
 	/**
 	 * @param mixed $handle
-	 * @param string $header
-	 * @return int
 	 */
-	public function parseHeaders($handle, $header)
+	public function parseHeaders($handle, string $header): int
 	{
 		preg_match('#^(.+):(.+)$#U', $header, $matches);
 		if ($matches) {
-			list($whole, $key, $value) = $matches;
+			[$whole, $key, $value] = $matches;
 			$this->headers[trim($key)] = trim($value);
 		}
 
 		return strlen($header);
 	}
 
-	/**
-	 * @return Response
-	 */
-	public function create()
+	public function create(): Response
 	{
 		return new Response($this->body, $this->headers, $this->info);
 	}

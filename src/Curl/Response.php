@@ -1,20 +1,17 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Http\Curl;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- */
 class Response
 {
 
 	/** @var mixed */
 	private $body;
 
-	/** @var array */
+	/** @var string[] */
 	private $headers;
 
-	/** @var array */
+	/** @var mixed[] */
 	private $info;
 
 	/** @var mixed */
@@ -22,10 +19,10 @@ class Response
 
 	/**
 	 * @param mixed $body
-	 * @param array $headers
-	 * @param array $info
+	 * @param string[] $headers
+	 * @param mixed[] $info
 	 */
-	public function __construct($body = NULL, array $headers = [], array $info = [])
+	public function __construct($body = null, array $headers = [], array $info = [])
 	{
 		$this->body = $body;
 		$this->headers = $headers;
@@ -33,67 +30,50 @@ class Response
 	}
 
 	/**
-	 * GETTERS/SETTERS *********************************************************
+	 * @return mixed[]
 	 */
-
-	/**
-	 * @return array
-	 */
-	public function getAllInfo()
+	public function getAllInfo(): array
 	{
 		return $this->info;
 	}
 
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
-	public function hasInfo($key)
+	public function hasInfo(string $key): bool
 	{
 		return isset($this->info[$key]);
 	}
 
 	/**
-	 * @param string $key
 	 * @return mixed
 	 */
-	public function getInfo($key)
+	public function getInfo(string $key)
 	{
 		if ($this->hasInfo($key)) {
 			return $this->info[$key];
 		}
 
-		return NULL;
+		return null;
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
-	public function getAllHeaders()
+	public function getAllHeaders(): array
 	{
 		return $this->headers;
 	}
 
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
-	public function hasHeader($key)
+	public function hasHeader(string $key): bool
 	{
 		return isset($this->headers[$key]);
 	}
 
-	/**
-	 * @param string $key
-	 * @return mixed
-	 */
-	public function getHeader($key)
+	public function getHeader(string $key): ?string
 	{
 		if ($this->hasHeader($key)) {
 			return $this->headers[$key];
 		}
 
-		return NULL;
+		return null;
 	}
 
 	/**
@@ -104,20 +84,14 @@ class Response
 		return $this->body;
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function hasBody()
+	public function hasBody(): bool
 	{
-		return $this->body !== NULL;
+		return $this->body !== null;
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isJson()
+	public function isJson(): bool
 	{
-		return $this->getInfo('content_type') == 'application/json';
+		return $this->getInfo('content_type') === 'application/json';
 	}
 
 	/**
@@ -125,21 +99,15 @@ class Response
 	 */
 	public function getJsonBody()
 	{
-		return @json_decode($this->getBody(), TRUE);
+		return @json_decode($this->getBody(), true);
 	}
 
-	/**
-	 * @return int
-	 */
-	public function getStatusCode()
+	public function getStatusCode(): int
 	{
 		return $this->getInfo('http_code') ?: 0;
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isOk()
+	public function isOk(): bool
 	{
 		return $this->getStatusCode() === 200;
 	}
@@ -154,9 +122,8 @@ class Response
 
 	/**
 	 * @param mixed $error
-	 * @return void
 	 */
-	public function setError($error)
+	public function setError($error): void
 	{
 		$this->error = $error;
 	}

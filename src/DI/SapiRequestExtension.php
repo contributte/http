@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Http\DI;
 
@@ -8,45 +8,37 @@ use Nette\Http\Request;
 use Nette\Http\UrlScript;
 use RuntimeException;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- */
 class SapiRequestExtension extends CompilerExtension
 {
 
-	/** @var array */
+	/** @var mixed[] */
 	private $defaults = [
-		'url' => NULL,
-		'query' => NULL,
-		'post' => NULL,
-		'files' => NULL,
-		'cookies' => NULL,
-		'headers' => NULL,
-		'method' => NULL,
-		'remoteAddress' => NULL,
-		'remoteHost' => NULL,
-		'rawBodyCallback' => NULL,
+		'url' => null,
+		'query' => null,
+		'post' => null,
+		'files' => null,
+		'cookies' => null,
+		'headers' => null,
+		'method' => null,
+		'remoteAddress' => null,
+		'remoteHost' => null,
+		'rawBodyCallback' => null,
 	];
 
-	/**
-	 * @param string $url
-	 */
-	public function __construct($url = NULL)
+	public function __construct(?string $url = null)
 	{
-		if ($url !== NULL) {
+		if ($url !== null) {
 			$this->defaults['url'] = $url;
 		}
 	}
 
 	/**
 	 * Decorate services
-	 *
-	 * @return void
 	 */
-	public function beforeCompile()
+	public function beforeCompile(): void
 	{
 		// Breaks at other mode then CLI
-		if (PHP_SAPI != 'cli') return;
+		if (PHP_SAPI !== 'cli') return;
 
 		$builder = $this->getContainerBuilder();
 

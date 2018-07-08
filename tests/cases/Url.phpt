@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 /**
  * Test: Url
@@ -9,7 +9,7 @@ use Tester\Assert;
 
 require_once __DIR__ . '/../bootstrap.php';
 
-test(function () {
+test(function (): void {
 	$url = new Url('https://github.com');
 	Assert::equal('https://github.com/', (string) $url);
 

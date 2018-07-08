@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Http\DI;
 
@@ -10,25 +10,20 @@ use Nette\Http\IResponse;
 use Nette\PhpGenerator\ClassType;
 use Nette\Utils\Validators;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- */
 class BasicAuthExtension extends CompilerExtension
 {
 
-	/** @var array */
+	/** @var mixed[] */
 	private $defaults = [
-		'enabled' => FALSE,
+		'enabled' => false,
 		'title' => 'Restrict zone',
 		'users' => [],
 	];
 
 	/**
 	 * Register services
-	 *
-	 * @return void
 	 */
-	public function loadConfiguration()
+	public function loadConfiguration(): void
 	{
 		$builder = $this->getContainerBuilder();
 		$config = $this->validateConfig($this->defaults);
@@ -37,31 +32,37 @@ class BasicAuthExtension extends CompilerExtension
 		Validators::assertField($config, 'users', 'array');
 
 		// Skip if its disabled
-		if (!$config['enabled']) return;
+		if ($config['enabled'] !== true) return;
 
 		// Throws if there's no user
-		if (!$config['users']) throw new LogicException('You have to define any user or disable extension');
+		if ($config['users'] === []) throw new LogicException('You have to define any user or disable extension');
 
 		$def = $builder->addDefinition($this->prefix('authenticator'))
-			->setClass(BasicAuthenticator::class, [$config['title']]);
+			->setType(BasicAuthenticator::class)
+			->setArguments([$config['title']]);
 
-		foreach ($config['users'] as $user => $password) {
-			$def->addSetup('addUser', [$user, $password]);
+		foreach ($config['users'] as $user => $values) {
+			if (is_string($values)) {
+				trigger_error('Usage of `$username => $password` is deprecated, use `$username => ["password" => $password]` instead', E_USER_DEPRECATED);
+				$password = $values;
+				$unsecured = true;
+			} else {
+				$password = $values['password'];
+				$unsecured = $values['unsecured'] ?? false;
+			}
+			$def->addSetup('addUser', [$user, $password, $unsecured]);
 		}
 	}
 
 	/**
 	 * Decorate initialize
-	 *
-	 * @param ClassType $class
-	 * @return void
 	 */
-	public function afterCompile(ClassType $class)
+	public function afterCompile(ClassType $class): void
 	{
 		$config = $this->validateConfig($this->defaults);
 
 		// Skip if its disabled or no user defined
-		if (!$config['enabled'] || !$config['users']) return;
+		if ($config['enabled'] !== true || $config['users'] === []) return;
 
 		$initialize = $class->methods['initialize'];
 		$initialize->addBody('$this->getService(?)->authenticate($this->getByType(?), $this->getByType(?));', [

@@ -23,18 +23,18 @@ Extension registers by automatic [`Contributte\Http\Curl\CurlClient`](https://gi
 
 ## SAPI
 
-Every modern PHP application needs sometimes run a few console commands. Let's say sending newsletter campaigns. There is
+Every modern PHP application needs sometimes to run a few console commands. Let's say sending newsletter campaigns. There is
 a tiny problem, there is no request/URL in console/SAPI (Server API) mode. Don't worry, just use our fake request -
 `SapiRequestExtension`.
 
-Easies ways is to register extension without any parameters.
+The easiest way is to register extension without any parameters.
 
 ```yaml
 extensions:
     sapi: Contributte\Http\DI\SapiRequestExtension
 ```
 
-Otherwise, you can pass directly URL address.
+Alternatively, you can pass directly URL address.
 
 ```yaml
 extensions:
@@ -65,7 +65,7 @@ extensions:
     auth: Contributte\Http\DI\BasicAuthExtension
 ```
 
-You have `enable` this extension by yourself. It's disabled by default.
+You have to `enable` this extension by yourself. It's disabled by default.
 
 ```yaml
 auth:

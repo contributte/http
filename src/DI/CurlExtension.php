@@ -16,7 +16,7 @@ class CurlExtension extends CompilerExtension
 		$builder = $this->getContainerBuilder();
 
 		$builder->addDefinition($this->prefix('client'))
-			->setClass(CurlClient::class);
+			->setFactory(CurlClient::class);
 	}
 
 }

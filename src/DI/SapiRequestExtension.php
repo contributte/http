@@ -49,7 +49,7 @@ class SapiRequestExtension extends CompilerExtension
 
 		$config = $this->validateConfig($this->defaults);
 		$builder->getDefinition('http.request')
-			->setClass(Request::class, [
+			->setFactory(Request::class, [
 				new Statement(UrlScript::class, [$config['url']]),
 				$config['query'],
 				$config['post'],

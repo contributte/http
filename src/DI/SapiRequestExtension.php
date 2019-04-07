@@ -3,33 +3,38 @@
 namespace Contributte\Http\DI;
 
 use Nette\DI\CompilerExtension;
-use Nette\DI\Statement;
+use Nette\DI\Definitions\ServiceDefinition;
+use Nette\DI\Definitions\Statement;
 use Nette\Http\Request;
 use Nette\Http\UrlScript;
+use Nette\Schema\Expect;
+use Nette\Schema\Schema;
 use RuntimeException;
 
 class SapiRequestExtension extends CompilerExtension
 {
 
-	/** @var mixed[] */
-	private $defaults = [
-		'url' => null,
-		'query' => null,
-		'post' => null,
-		'files' => null,
-		'cookies' => null,
-		'headers' => null,
-		'method' => null,
-		'remoteAddress' => null,
-		'remoteHost' => null,
-		'rawBodyCallback' => null,
-	];
+	/** @var array */
+	private $constructorConfig = [];
 
 	public function __construct(?string $url = null)
 	{
-		if ($url !== null) {
-			$this->defaults['url'] = $url;
-		}
+		$this->constructorConfig['url'] = $url;
+	}
+
+	public function getConfigSchema(): Schema
+	{
+		return Expect::structure([
+			'url' => Expect::string($this->constructorConfig['url'])->nullable(),
+			'post' => Expect::arrayOf('string')->nullable(),
+			'files' => Expect::arrayOf('string')->nullable(),
+			'cookies' => Expect::arrayOf('string')->nullable(),
+			'headers' => Expect::arrayOf('string')->nullable(),
+			'method' => Expect::string()->nullable(),
+			'remoteAddress' => Expect::string()->nullable(),
+			'remoteHost' => Expect::string()->nullable(),
+			'rawBodyCallback' => Expect::string()->nullable() // Callback in neon config?
+		]);
 	}
 
 	/**
@@ -47,11 +52,13 @@ class SapiRequestExtension extends CompilerExtension
 			throw new RuntimeException('Service http.request is needed');
 		}
 
-		$config = $this->validateConfig($this->defaults);
-		$builder->getDefinition('http.request')
-			->setFactory(Request::class, [
+		$config = (array) $this->config;
+
+		/** @var ServiceDefinition $definition */
+		$definition = $builder->getDefinition('http.request');
+
+		$definition->setFactory(Request::class, [
 				new Statement(UrlScript::class, [$config['url']]),
-				$config['query'],
 				$config['post'],
 				$config['files'],
 				$config['cookies'],

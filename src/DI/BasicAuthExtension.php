@@ -8,17 +8,20 @@ use Nette\DI\CompilerExtension;
 use Nette\Http\IRequest;
 use Nette\Http\IResponse;
 use Nette\PhpGenerator\ClassType;
-use Nette\Utils\Validators;
+use Nette\Schema\Expect;
+use Nette\Schema\Schema;
 
 class BasicAuthExtension extends CompilerExtension
 {
 
-	/** @var mixed[] */
-	private $defaults = [
-		'enabled' => false,
-		'title' => 'Restrict zone',
-		'users' => [],
-	];
+	public function getConfigSchema(): Schema
+	{
+		return Expect::structure([
+			'enabled' => Expect::bool(false),
+			'title' => Expect::string('Restrict zone'),
+			'users' => Expect::arrayOf('string'),
+		]);
+	}
 
 	/**
 	 * Register services
@@ -26,16 +29,17 @@ class BasicAuthExtension extends CompilerExtension
 	public function loadConfiguration(): void
 	{
 		$builder = $this->getContainerBuilder();
-		$config = $this->validateConfig($this->defaults);
-
-		Validators::assertField($config, 'enabled', 'bool');
-		Validators::assertField($config, 'users', 'array');
+		$config = (array) $this->config;
 
 		// Skip if its disabled
-		if ($config['enabled'] !== true) return;
+		if ($config['enabled'] !== true) {
+			return;
+		}
 
 		// Throws if there's no user
-		if ($config['users'] === []) throw new LogicException('You have to define any user or disable extension');
+		if ($config['users'] === []) {
+			throw new LogicException('You have to define any user or disable extension');
+		}
 
 		$def = $builder->addDefinition($this->prefix('authenticator'))
 			->setType(BasicAuthenticator::class)
@@ -57,14 +61,16 @@ class BasicAuthExtension extends CompilerExtension
 	/**
 	 * Decorate initialize
 	 */
-	public function afterCompile(ClassType $class): void
+	public function afterCompile(ClassType $classType): void
 	{
-		$config = $this->validateConfig($this->defaults);
+		$config = (array) $this->config;
 
 		// Skip if its disabled or no user defined
-		if ($config['enabled'] !== true || $config['users'] === []) return;
+		if ($config['enabled'] !== true || $config['users'] === []) {
+			return;
+		}
 
-		$initialize = $class->methods['initialize'];
+		$initialize = $classType->getMethod('initialize');
 		$initialize->addBody('$this->getService(?)->authenticate($this->getByType(?), $this->getByType(?));', [
 			$this->prefix('authenticator'),
 			IRequest::class,

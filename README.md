@@ -10,7 +10,7 @@
 [![Downloads this Month](https://img.shields.io/packagist/dm/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
 [![Downloads total](https://img.shields.io/packagist/dt/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
 [![Latest stable](https://img.shields.io/packagist/v/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
-[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat)](https://github.com/phpstan/phpstan)
+[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
 
 ## Discussion / Help
 
@@ -24,11 +24,12 @@ composer require contributte/http
 
 ## Versions
 
-| State       | Version | Branch   | PHP      |
-|-------------|---------|----------|----------|
-| dev         | `^0.3`  | `master` | `>= 7.1` |
-| stable      | `^0.2`  | `master` | `>= 7.1` |
-| stable      | `^0.1`  | `master` | `>= 5.6` |
+| State       | Version | Branch   | PHP    |
+|-------------|---------|----------|--------|
+| dev         | `^0.4`  | `master` | `^7.2` |
+| stable      | `^0.3`  | `master` | `^7.1` |
+| stable      | `^0.2`  | `master` | `^7.1` |
+| stable      | `^0.1`  | `master` | `^5.6` |
 
 ## Overview
 

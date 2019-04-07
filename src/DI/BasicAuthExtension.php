@@ -19,7 +19,7 @@ class BasicAuthExtension extends CompilerExtension
 		return Expect::structure([
 			'enabled' => Expect::bool(false),
 			'title' => Expect::string('Restrict zone'),
-			'users' => Expect::arrayOf('string'),
+			'users' => Expect::arrayOf('array'),
 		]);
 	}
 

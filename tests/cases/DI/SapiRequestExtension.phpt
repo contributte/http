@@ -9,7 +9,7 @@ use Nette\Bridges\HttpDI\HttpExtension;
 use Nette\DI\Compiler;
 use Nette\DI\Container;
 use Nette\DI\ContainerLoader;
-use Nette\Http\Request;
+use Nette\Http\IRequest;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
@@ -24,5 +24,5 @@ test(function (): void {
 	/** @var Container $container */
 	$container = new $class();
 
-	Assert::equal('https://contributte.org/', (string) $container->getByType(Request::class)->getUrl());
+	Assert::equal('https://contributte.org/', (string) $container->getByType(IRequest::class)->getUrl());
 });

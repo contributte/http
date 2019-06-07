@@ -98,12 +98,12 @@ class Response
 	 * @return mixed
 	 */
 	public function getJsonBody()
-        {
-                $body = $this->getBody();
-                if ($body === null) return null;
+	{
+				$body = $this->getBody();
+				if ($body === null) return null;
 
-                return @json_decode((string) $this->getBody(), true);
-        }
+				return @json_decode((string) $this->getBody(), true);
+	}
 
 	public function getStatusCode(): int
 	{

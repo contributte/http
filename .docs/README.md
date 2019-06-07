@@ -1,12 +1,19 @@
-# HTTP
+# Contributte HTTP
 
 ## Content
 
-- [Curl - provides CurlExtension and simple cURL client](#curl)
-- [SAPI - provides SapiRequestExtension (fake request in console mode)](#sapi)
+- [Setup](#setup)
+- [Curl - simple http client (CurlExtension)](#curl)
+- [SAPI - fake request (CliRequestExtension)](#sapi)
 - [BasicAuth - simple basic authentication](#basic-authentication)
-- Useful classes
-    - [URL - extra methods](#url)
+- [Useful classes](#useful-classes)
+    - [Url](#url)
+
+## Setup
+
+```bash
+composer require contributte/http
+```
 
 ## Curl
 

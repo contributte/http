@@ -14,11 +14,16 @@ use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-test(function (): void {
+test(static function (): void {
 	$loader = new ContainerLoader(TEMP_DIR, true);
-	$class = $loader->load(function (Compiler $compiler): void {
+	$class = $loader->load(static function (Compiler $compiler): void {
+		$compiler->addConfig([
+			'sapi' => [
+				'url' => 'https://contributte.org',
+			],
+		]);
 		$compiler->addExtension('http', new HttpExtension(true));
-		$compiler->addExtension('sapi', new SapiRequestExtension('https://contributte.org'));
+		$compiler->addExtension('sapi', new SapiRequestExtension());
 	}, 1);
 
 	/** @var Container $container */

@@ -26,7 +26,7 @@ extensions:
     curl: Contributte\Http\DI\CurlExtension
 ```
 
-Extension registers by automatic [`Contributte\Http\Curl\CurlClient`](https://github.com/contributte/http/blob/master/src/Curl/CurlClient.php) as a service.
+Extension registers [`Contributte\Http\Curl\CurlClient`](https://github.com/contributte/http/blob/master/src/Curl/CurlClient.php) as a service.
 
 ## SAPI
 
@@ -34,18 +34,9 @@ Every modern PHP application needs sometimes to run a few console commands. Let'
 a tiny problem, there is no request/URL in console/SAPI (Server API) mode. Don't worry, just use our fake request -
 `SapiRequestExtension`.
 
-The easiest way is to register extension without any parameters.
-
 ```yaml
 extensions:
     sapi: Contributte\Http\DI\SapiRequestExtension
-```
-
-Alternatively, you can pass directly URL address.
-
-```yaml
-extensions:
-    sapi: Contributte\Http\DI\SapiRequestExtension(https://contributte.org)
 ```
 
 List of all options:
@@ -54,15 +45,15 @@ List of all options:
 sapi:
     url: https://contributte.org
     # other params
-    query: NULL
-    post: NULL
-    files: NULL
-    cookies: NULL
-    headers: NULL
-    method: NULL
-    remoteAddress: NULL
-    remoteHost: NULL
-    rawBodyCallback: NULL
+    query: null
+    post: null
+    files: null
+    cookies: null
+    headers: null
+    method: null
+    remoteAddress: null
+    remoteHost: null
+    rawBodyCallback: null
 ```
 
 ## Basic Authentication

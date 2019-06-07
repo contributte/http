@@ -9,7 +9,7 @@ use Tester\Assert;
 
 require_once __DIR__ . '/../bootstrap.php';
 
-test(function (): void {
+test(static function (): void {
 	$url = new Url('https://github.com');
 	Assert::equal('https://github.com/', (string) $url);
 

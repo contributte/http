@@ -19,11 +19,11 @@
     }
   ],
   "require": {
-    "php": ">= 7.1",
-    "nette/http": "~2.4.9"
+    "php": "^7.2",
+    "nette/http": "~3.0.1"
   },
   "require-dev": {
-    "nette/di": "~2.4.13",
+    "nette/di": "~3.0.0",
     "ninjify/nunjuck": "^0.2.0",
     "ninjify/qa": "^0.8.0",
     "phpstan/extension-installer": "^1.0",
@@ -34,8 +34,7 @@
     "tracy/tracy": "~2.5.1"
   },
   "conflict": {
-    "nette/di": "<2.4.13",
-    "nette/utils": "<2.5.2"
+    "nette/di": "<3.0.0"
   },
   "suggest": {
     "nette/di": "to use CompilerExtensions"
@@ -52,7 +51,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "0.3.x-dev"
+      "dev-master": "0.4.x-dev"
     }
   }
 }

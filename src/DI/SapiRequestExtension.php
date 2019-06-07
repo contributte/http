@@ -3,42 +3,42 @@
 namespace Contributte\Http\DI;
 
 use Nette\DI\CompilerExtension;
-use Nette\DI\Statement;
+use Nette\DI\Definitions\Statement;
+use Nette\DI\ServiceDefinition;
 use Nette\Http\Request;
 use Nette\Http\UrlScript;
+use Nette\Schema\Expect;
+use Nette\Schema\Schema;
 use RuntimeException;
+use stdClass;
 
+/**
+ * @property-read stdClass $config
+ */
 class SapiRequestExtension extends CompilerExtension
 {
 
-	/** @var mixed[] */
-	private $defaults = [
-		'url' => null,
-		'query' => null,
-		'post' => null,
-		'files' => null,
-		'cookies' => null,
-		'headers' => null,
-		'method' => null,
-		'remoteAddress' => null,
-		'remoteHost' => null,
-		'rawBodyCallback' => null,
-	];
-
-	public function __construct(?string $url = null)
+	public function getConfigSchema(): Schema
 	{
-		if ($url !== null) {
-			$this->defaults['url'] = $url;
-		}
+		return Expect::structure([
+			'url' => Expect::string()->required(),
+			'post' => Expect::array(),
+			'files' => Expect::array(),
+			'cookies' => Expect::array(),
+			'headers' => Expect::array(),
+			'method' => Expect::string(),
+			'remoteAddress' => Expect::string(),
+			'remoteHost' => Expect::string(),
+			'rawBodyCallback' => Expect::mixed(),
+		]);
 	}
 
-	/**
-	 * Decorate services
-	 */
 	public function beforeCompile(): void
 	{
 		// Breaks at other mode then CLI
-		if (PHP_SAPI !== 'cli') return;
+		if (PHP_SAPI !== 'cli') {
+			return;
+		}
 
 		$builder = $this->getContainerBuilder();
 
@@ -47,20 +47,22 @@ class SapiRequestExtension extends CompilerExtension
 			throw new RuntimeException('Service http.request is needed');
 		}
 
-		$config = $this->validateConfig($this->defaults);
-		$builder->getDefinition('http.request')
-			->setFactory(Request::class, [
-				new Statement(UrlScript::class, [$config['url']]),
-				$config['query'],
-				$config['post'],
-				$config['files'],
-				$config['cookies'],
-				$config['headers'],
-				$config['method'],
-				$config['remoteAddress'],
-				$config['remoteHost'],
-				$config['rawBodyCallback'],
-			]);
+		$requestDefinition = $builder->getDefinition('http.request');
+
+		assert($requestDefinition instanceof ServiceDefinition);
+
+		$config = $this->config;
+		$requestDefinition->setFactory(Request::class, [
+			new Statement(UrlScript::class, [$config->url]),
+			$config->post,
+			$config->files,
+			$config->cookies,
+			$config->headers,
+			$config->method,
+			$config->remoteAddress,
+			$config->remoteHost,
+			$config->rawBodyCallback,
+		]);
 	}
 
 }

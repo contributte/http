@@ -14,9 +14,9 @@ use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-test(function (): void {
+test(static function (): void {
 	$loader = new ContainerLoader(TEMP_DIR, true);
-	$class = $loader->load(function (Compiler $compiler): void {
+	$class = $loader->load(static function (Compiler $compiler): void {
 		$compiler->addExtension('curl', new CurlExtension());
 	}, 1);
 

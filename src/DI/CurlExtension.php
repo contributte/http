@@ -8,9 +8,6 @@ use Nette\DI\CompilerExtension;
 class CurlExtension extends CompilerExtension
 {
 
-	/**
-	 * Register services
-	 */
 	public function loadConfiguration(): void
 	{
 		$builder = $this->getContainerBuilder();

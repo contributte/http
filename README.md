@@ -1,57 +1,52 @@
-# Contributte HTTP
+![](https://heatbadger.now.sh/github/readme/contributte/http/)
 
-Extra contribution to [`nette/http`](https://github.com/nette/http).
+<p align=center>
+  <a href="https://github.com/contributte/http/actions"><img src="https://badgen.net/github/checks/contributte/http/master?http=300"></a>
+  <a href="https://coveralls.io/r/contributte/http"><img src="https://badgen.net/coveralls/c/github/contributte/http?http=300"></a>
+  <a href="https://packagist.org/packages/contributte/http"><img src="https://badgen.net/packagist/dm/contributte/http"></a>
+  <a href="https://packagist.org/packages/contributte/http"><img src="https://badgen.net/packagist/v/contributte/http"></a>
+</p>
+<p align=center>
+  <a href="https://packagist.org/packages/contributte/http"><img src="https://badgen.net/packagist/php/contributte/http"></a>
+  <a href="https://github.com/contributte/http"><img src="https://badgen.net/github/license/contributte/http"></a>
+  <a href="https://bit.ly/ctteg"><img src="https://badgen.net/badge/support/gitter/cyan"></a>
+  <a href="https://bit.ly/cttfo"><img src="https://badgen.net/badge/support/forum/yellow"></a>
+  <a href="https://contributte.org/partners.html"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
+</p>
 
-[![Build Status](https://img.shields.io/travis/contributte/http.svg?style=flat-square)](https://travis-ci.org/contributte/http)
-[![Code coverage](https://img.shields.io/coveralls/contributte/http.svg?style=flat-square)](https://coveralls.io/r/contributte/http)
-[![Licence](https://img.shields.io/packagist/l/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
-[![Downloads this Month](https://img.shields.io/packagist/dm/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
-[![Downloads total](https://img.shields.io/packagist/dt/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
-[![Latest stable](https://img.shields.io/packagist/v/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
-[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
+<p align=center>
+Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact 👨🏻‍💻 <a href="https://f3l1x.io">f3l1x.io</a> | Twitter 🐦 <a href="https://twitter.com/contributte">@contributte</a>
+</p>
 
-## Discussion / Help
+## Usage
 
-[![Join the chat](https://img.shields.io/gitter/room/contributte/contributte.svg?style=flat-square)](http://bit.ly/ctteg)
+To install latest version of `contributte/http` use [Composer](https://getcomposer.com).
+
+```
+composer require contributte/http
+```
 
 ## Documentation
 
-- [Setup](.docs/README.md#setup)
-- [Curl - simple http client (CurlExtension)](.docs/README.md#curl)
-- [SAPI - fake request (CliRequestExtension)](.docs/README.md#sapi)
-- [BasicAuth - simple basic authentication](.docs/README.md#basic-authentication)
-- [Useful classes](.docs/README.md#useful-classes)
-    - [Url](.docs/README.md#url)
+For details on how to use this package, check out our [documentation](.docs).
 
 ## Versions
 
 | State       | Version | Branch   | Nette | PHP     |
 |-------------|---------|----------|-------|---------|
-| dev         | `^0.4`  | `master` | 3.0+  | `>=7.2`  |
-| stable      | `^0.3`  | `master` | 3.0+  | `^7.2`  |
+| dev         | `^0.5`  | `master` | 3.0+  | `>=7.2` |
+| stable      | `^0.4`  | `master` | 3.0+  | `>=7.2` |
 | stable      | `^0.2`  | `master` | 2.4   | `>=7.1` |
-| stable      | `^0.1`  | `master` | 2.4   | `>=5.6` |
 
-## Maintainers
+## Development
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/f3l1x">
-            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=150">
-        </a>
-        </br>
-        <a href="https://github.com/f3l1x">Milan Felix Šulc</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+See [how to contribute](https://contributte.org) to this package. This package is currently maintained by these authors.
+
+<a href="https://github.com/f3l1x">
+    <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
+</a>
 
 -----
 
-The development is sponsored by [Tlapnet](http://www.tlapnet.cz). Thank you guys! :+1:
-
----
-
-Thank you for testing, reporting and contributing.
+Consider to [support](https://contributte.com/partners) **contributte** development team.
+Also thank you for using this package.

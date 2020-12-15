@@ -107,7 +107,7 @@ class Response
 
 	public function getStatusCode(): int
 	{
-		return $this->getInfo('http_code') ?: 0;
+		return $this->getInfo('http_code') ?? 0;
 	}
 
 	public function isOk(): bool

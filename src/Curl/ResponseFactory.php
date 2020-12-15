@@ -34,7 +34,7 @@ class ResponseFactory
 	{
 		preg_match('#^(.+):(.+)$#U', $header, $matches);
 		if ($matches) {
-			[$whole, $key, $value] = $matches;
+			[, $key, $value] = $matches;
 			$this->headers[trim($key)] = trim($value);
 		}
 

@@ -49,7 +49,9 @@ class BasicAuthenticator
 
 	protected function auth(string $user, string $password): bool
 	{
-		if (!isset($this->users[$user])) return false;
+		if (!isset($this->users[$user])) {
+			return false;
+		}
 
 		if (
 			($this->users[$user]['unsecured'] === true && !hash_equals($password, $this->users[$user]['password'])) ||

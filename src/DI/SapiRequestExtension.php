@@ -3,8 +3,8 @@
 namespace Contributte\Http\DI;
 
 use Nette\DI\CompilerExtension;
+use Nette\DI\Definitions\ServiceDefinition;
 use Nette\DI\Definitions\Statement;
-use Nette\DI\ServiceDefinition;
 use Nette\Http\Request;
 use Nette\Http\UrlScript;
 use Nette\Schema\Expect;
@@ -58,7 +58,7 @@ class SapiRequestExtension extends CompilerExtension
 			$config->files,
 			$config->cookies,
 			$config->headers,
-			$config->method,
+			$config->method ?? 'GET',
 			$config->remoteAddress,
 			$config->remoteHost,
 			$config->rawBodyCallback,

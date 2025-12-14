@@ -57,7 +57,7 @@ class BasicAuthExtension extends CompilerExtension
 			return;
 		}
 
-		$initialize = $class->methods['initialize'];
+		$initialize = $class->getMethod('initialize');
 		$initialize->addBody('$this->getService(?)->authenticate($this->getByType(?), $this->getByType(?));', [
 			$this->prefix('authenticator'),
 			IRequest::class,

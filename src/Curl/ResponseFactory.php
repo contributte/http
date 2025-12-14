@@ -2,17 +2,18 @@
 
 namespace Contributte\Http\Curl;
 
+use Contributte\Http\Client\Response;
+
 class ResponseFactory
 {
 
-	/** @var mixed */
-	private $body;
+	private mixed $body = null;
 
 	/** @var string[] */
-	private $headers = [];
+	private array $headers = [];
 
 	/** @var mixed[] */
-	private $info = [];
+	private array $info = [];
 
 	/**
 	 * @param mixed[] $info
@@ -27,13 +28,10 @@ class ResponseFactory
 		$this->body = $body;
 	}
 
-	/**
-	 * @param mixed $handle
-	 */
-	public function parseHeaders($handle, string $header): int
+	public function parseHeaders(mixed $handle, string $header): int
 	{
 		preg_match('#^(.+):(.+)$#U', $header, $matches);
-		if ($matches) {
+		if ($matches !== []) {
 			[, $key, $value] = $matches;
 			$this->headers[trim($key)] = trim($value);
 		}

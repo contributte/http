@@ -9,11 +9,10 @@ use Tracy\Debugger;
 class BasicAuthenticator
 {
 
-	/** @var string */
-	private $title;
+	private string $title;
 
-	/** @var mixed[] */
-	private $users = [];
+	/** @var array<string, array{password: string, unsecured: bool}> */
+	private array $users = [];
 
 	public function __construct(string $title)
 	{
@@ -26,13 +25,13 @@ class BasicAuthenticator
 			'password' => $password,
 			'unsecured' => $unsecured,
 		];
+
 		return $this;
 	}
 
 	public function authenticate(IRequest $request, IResponse $response): void
 	{
-		$user = $request->getUrl()->getUser();
-		$password = $request->getUrl()->getPassword();
+		[$user, $password] = $this->parseBasicAuth($request);
 
 		if (!$this->auth($user, $password)) {
 			if (class_exists(Debugger::class)) {
@@ -40,7 +39,7 @@ class BasicAuthenticator
 			}
 
 			$response->setHeader('WWW-Authenticate', sprintf('Basic realm="%s"', $this->title));
-			$response->setCode(IResponse::S401_UNAUTHORIZED);
+			$response->setCode(IResponse::S401_Unauthorized);
 
 			echo '<h1>Authentication failed.</h1>';
 			die;
@@ -49,18 +48,36 @@ class BasicAuthenticator
 
 	protected function auth(string $user, string $password): bool
 	{
-		if (!isset($this->users[$user])) {
+		if ($user === '' || !isset($this->users[$user])) {
 			return false;
 		}
 
-		if (
-			($this->users[$user]['unsecured'] === true && !hash_equals($password, $this->users[$user]['password'])) ||
-			($this->users[$user]['unsecured'] === false && !password_verify($password, $this->users[$user]['password']))
-		) {
+		$userData = $this->users[$user];
+		if ($userData['unsecured'] && !hash_equals($password, $userData['password'])) {
 			return false;
 		}
 
-		return true;
+		return $userData['unsecured'] || password_verify($password, $userData['password']);
+	}
+
+	/**
+	 * Parse Basic auth credentials from request
+	 *
+	 * @return array{string, string}
+	 */
+	private function parseBasicAuth(IRequest $request): array
+	{
+		$header = $request->getHeader('Authorization');
+		if ($header !== null && str_starts_with($header, 'Basic ')) {
+			$credentials = base64_decode(substr($header, 6), true);
+			if ($credentials !== false && str_contains($credentials, ':')) {
+				$parts = explode(':', $credentials, 2);
+
+				return [$parts[0], $parts[1]];
+			}
+		}
+
+		return ['', ''];
 	}
 
 }

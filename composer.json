@@ -19,18 +19,15 @@
     }
   ],
   "require": {
-    "php": ">=7.2",
-    "nette/http": "^3.0.1"
+    "php": ">=8.2",
+    "nette/http": "^3.3"
   },
   "require-dev": {
-    "nette/di": "^3.0.0",
+    "contributte/phpstan": "^0.1",
+    "contributte/qa": "^0.4",
+    "nette/di": "^3.2",
     "ninjify/nunjuck": "^0.4",
-    "ninjify/qa": "^0.12",
-    "phpstan/phpstan": "^1.0",
-    "phpstan/phpstan-deprecation-rules": "^1.0",
-    "phpstan/phpstan-nette": "^1.0",
-    "phpstan/phpstan-strict-rules": "^1.0",
-    "tracy/tracy": "^2.5.1"
+    "tracy/tracy": "^2.10"
   },
   "suggest": {
     "nette/di": "to use CompilerExtensions"
@@ -50,7 +47,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "0.5.x-dev"
+      "dev-master": "0.6.x-dev"
     }
   }
 }

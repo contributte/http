@@ -1,0 +1,36 @@
+name: "Tests"
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+  push:
+    branches: ["*"]
+
+  schedule:
+    - cron: "0 8 * * 1"
+
+jobs:
+  tests-82:
+    name: "Nette Tester (PHP 8.2)"
+    uses: contributte/.github/.github/workflows/nette-tester.yml@master
+    with:
+      php: "8.2"
+
+  tests-83:
+    name: "Nette Tester (PHP 8.3)"
+    uses: contributte/.github/.github/workflows/nette-tester.yml@master
+    with:
+      php: "8.3"
+
+  tests-84:
+    name: "Nette Tester (PHP 8.4)"
+    uses: contributte/.github/.github/workflows/nette-tester.yml@master
+    with:
+      php: "8.4"
+
+  tests-85:
+    name: "Nette Tester (PHP 8.5)"
+    uses: contributte/.github/.github/workflows/nette-tester.yml@master
+    with:
+      php: "8.5"

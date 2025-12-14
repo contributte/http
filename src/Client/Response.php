@@ -1,28 +1,28 @@
 <?php declare(strict_types = 1);
 
-namespace Contributte\Http\Curl;
+namespace Contributte\Http\Client;
 
+/**
+ * HTTP Response object
+ */
 class Response
 {
 
-	/** @var mixed */
-	private $body;
+	private mixed $body;
 
 	/** @var string[] */
-	private $headers;
+	private array $headers;
 
 	/** @var mixed[] */
-	private $info;
+	private array $info;
 
-	/** @var mixed */
-	private $error;
+	private mixed $error = null;
 
 	/**
-	 * @param mixed $body
 	 * @param string[] $headers
 	 * @param mixed[] $info
 	 */
-	public function __construct($body = null, array $headers = [], array $info = [])
+	public function __construct(mixed $body = null, array $headers = [], array $info = [])
 	{
 		$this->body = $body;
 		$this->headers = $headers;
@@ -42,10 +42,7 @@ class Response
 		return isset($this->info[$key]);
 	}
 
-	/**
-	 * @return mixed
-	 */
-	public function getInfo(string $key)
+	public function getInfo(string $key): mixed
 	{
 		if ($this->hasInfo($key)) {
 			return $this->info[$key];
@@ -76,10 +73,7 @@ class Response
 		return null;
 	}
 
-	/**
-	 * @return mixed
-	 */
-	public function getBody()
+	public function getBody(): mixed
 	{
 		return $this->body;
 	}
@@ -91,23 +85,37 @@ class Response
 
 	public function isJson(): bool
 	{
-		return $this->getInfo('content_type') === 'application/json';
+		$contentType = $this->getInfo('content_type');
+		if ($contentType === null) {
+			$contentType = $this->getHeader('Content-Type');
+		}
+
+		return is_string($contentType) && str_contains($contentType, 'application/json');
 	}
 
-	/**
-	 * @return mixed
-	 */
-	public function getJsonBody()
+	public function getJsonBody(): mixed
 	{
-				$body = $this->getBody();
-				if ($body === null) return null;
+		$body = $this->getBody();
+		if (!is_string($body) || $body === '') {
+			return null;
+		}
 
-				return @json_decode((string) $this->getBody(), true);
+		return json_decode($body, true);
 	}
 
 	public function getStatusCode(): int
 	{
-		return $this->getInfo('http_code') ?? 0;
+		$httpCode = $this->getInfo('http_code');
+		if (is_int($httpCode)) {
+			return $httpCode;
+		}
+
+		$statusCode = $this->getInfo('status_code');
+		if (is_int($statusCode)) {
+			return $statusCode;
+		}
+
+		return 0;
 	}
 
 	public function isOk(): bool
@@ -115,18 +123,19 @@ class Response
 		return $this->getStatusCode() === 200;
 	}
 
-	/**
-	 * @return mixed
-	 */
-	public function getError()
+	public function isSuccess(): bool
+	{
+		$code = $this->getStatusCode();
+
+		return $code >= 200 && $code < 300;
+	}
+
+	public function getError(): mixed
 	{
 		return $this->error;
 	}
 
-	/**
-	 * @param mixed $error
-	 */
-	public function setError($error): void
+	public function setError(mixed $error): void
 	{
 		$this->error = $error;
 	}

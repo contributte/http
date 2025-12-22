@@ -5,8 +5,7 @@ on:
   workflow_dispatch:
 
   push:
-    branches:
-      - "**"
+    branches: ["*"]
 
   schedule:
     - cron: "0 8 * * 1"

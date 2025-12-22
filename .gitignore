@@ -1,10 +1,5 @@
-# IDE
-/.idea
-
-# Composer
-/vendor
-/composer.lock
-
-# Tests
-/temp
-/coverage.xml
+/vendor/
+/tests/tmp/
+composer.lock
+coverage.html
+coverage.xml

@@ -20,12 +20,12 @@
   ],
   "require": {
     "php": ">=8.2",
-    "nette/http": "^3.3"
+    "nette/http": "^3.3.0"
   },
   "require-dev": {
     "contributte/phpstan": "^0.1",
     "contributte/qa": "^0.4",
-    "nette/di": "^3.2",
+    "nette/di": "^3.2.0",
     "ninjify/nunjuck": "^0.4",
     "tracy/tracy": "^2.10"
   },

@@ -1,5 +1,14 @@
-/vendor/
-/tests/tmp/
-composer.lock
-coverage.html
-coverage.xml
+# IDE
+/.idea
+
+# Composer
+/vendor
+/composer.lock
+
+# Tests
+/tests/tmp
+/coverage.*
+/tests/**/*.log
+/tests/**/*.html
+/tests/**/*.expected
+/tests/**/*.actual
